@@ -1,0 +1,23 @@
+{
+  "author": "Tom McLaughlin \u003ctmclaughlin@hubspot.com\u003e",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": "\u003e\u003d0.0.0"
+    },
+    {
+      "name": "maestrodev/wget",
+      "version_requirement": "\u003e\u003d1.0.0"
+    }
+  ],
+  "description": "Setup and configure Sonatype Nexus.\n\nhttp://www.sonatype.org/nexus/",
+  "license": "BSD License",
+  "name": "hubspot-nexus",
+  "operatingsystem_support": [],
+  "project_page": "http://github.com/hubspotdevops/puppet-nexus",
+  "requirements": [],
+  "source": "http://github.com/hubspotdevops/puppet-nexus",
+  "summary": "Puppet module for Sonatype Nexus",
+  "tags": [],
+  "version": "1.2.0"
+}

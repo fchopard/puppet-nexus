@@ -21,16 +21,19 @@
 #
 class nexus::params {
   # See nexus::package on why this won't increment the package version.
-  $version        = 'latest'
-  $revision       = '01'
-  $download_site  = 'http://www.sonatype.org/downloads'
-  $nexus_root     = '/srv'
-  $nexus_home_dir = 'nexus'
-  $nexus_work_dir = 'sonatype-work'
-  $nexus_user     = 'nexus'
-  $nexus_group    = 'nexus'
-  $nexus_host     = '0.0.0.0'
-  $nexus_port     = '8081'
-  $nexus_context  = '/nexus'
-  $nexus_manage_user = true
+  $version                    = 'latest'
+  $revision                   = '01'
+  $download_site              = 'http://www.sonatype.org/downloads'
+  $nexus_root                 = '/srv'
+  $nexus_home_dir             = 'nexus'
+  $nexus_work_dir             = 'sonatype-work'
+  $nexus_user                 = 'nexus'
+  $nexus_group                = 'nexus'
+  $nexus_host                 = '0.0.0.0'
+  $nexus_port                 = '8081'
+  $nexus_context              = '/nexus'
+  $nexus_manage_user          = true
+  $nexus_backup               = false
+  $nexus_backup_target_dir    = undef
+  $nexus_backup_includes_file = template('nexus/nexus-backup-includes.list')
 }

@@ -30,17 +30,20 @@
 # Copyright 2013 Hubspot
 #
 class nexus (
-  $version           = $nexus::params::version,
-  $revision          = $nexus::params::revision,
-  $download_site     = $nexus::params::download_site,
-  $nexus_root        = $nexus::params::nexus_root,
-  $nexus_home_dir    = $nexus::params::nexus_home_dir,
-  $nexus_user        = $nexus::params::nexus_user,
-  $nexus_group       = $nexus::params::nexus_group,
-  $nexus_host        = $nexus::params::nexus_host,
-  $nexus_port        = $nexus::params::nexus_port,
-  $nexus_context     = $nexus::params::nexus_context,
-  $nexus_manage_user = $nexus::params::nexus_manage_user,
+  $version                    = $nexus::params::version,
+  $revision                   = $nexus::params::revision,
+  $download_site              = $nexus::params::download_site,
+  $nexus_root                 = $nexus::params::nexus_root,
+  $nexus_home_dir             = $nexus::params::nexus_home_dir,
+  $nexus_user                 = $nexus::params::nexus_user,
+  $nexus_group                = $nexus::params::nexus_group,
+  $nexus_host                 = $nexus::params::nexus_host,
+  $nexus_port                 = $nexus::params::nexus_port,
+  $nexus_context              = $nexus::params::nexus_context,
+  $nexus_manage_user          = $nexus::params::nexus_manage_user,
+  $nexus_backup               = $nexus::params::nexus_backup,
+  $nexus_backup_target_dir    = $nexus::params::nexus_backup_target_dir,
+  $nexus_backup_includes_file = $nexus::params::nexus_backup_includes_file,
 ) inherits nexus::params {
   include stdlib
 
@@ -96,7 +99,16 @@ class nexus (
     nexus_user => $nexus_user,
     require    => Class['nexus::config']
   }
-
+  
+  if($nexus_backup) {
+	  class{ 'nexus::backup':
+	    nexus_root                 => "${nexus_root}/${nexus_home_dir}",
+	    nexus_work                 => "${nexus_root}/${nexus::params::nexus_work_dir}",
+      nexus_backup_target_dir    => $nexus_backup_target_dir,
+      nexus_backup_includes_file => $nexus_backup_includes_file,
+	  }    
+  }
+  
   anchor{ 'nexus::end':
     require => Class['nexus::service']
   }
